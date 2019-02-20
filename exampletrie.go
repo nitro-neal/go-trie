@@ -14,7 +14,22 @@ type TrieNode struct {
 }
 
 func (node TrieNode) addPhrase(phrase string) {
-	fmt.Println("Will add phrase to trie: ", phrase)
+
+	if phrase == "" {
+		return
+	}
+
+	firstChar := string(phrase[0])
+
+	if _, ok := node.children[firstChar]; ok == false {
+		if phrase[1:] == "" {
+			node.children[firstChar] = TrieNode{firstChar, make(map[string]TrieNode), true}
+		} else {
+			node.children[firstChar] = TrieNode{firstChar, make(map[string]TrieNode), false}
+		}
+	}
+
+	node.children[firstChar].addPhrase(phrase[1:])
 }
 
 func addWordsToTrie(rootNode TrieNode, filename string) {
@@ -35,9 +50,14 @@ func addWordsToTrie(rootNode TrieNode, filename string) {
 }
 
 func main() {
-    fmt.Println("Example Trie Implementation")
+    fmt.Println("\nExample Trie Implementation in GoLang.\n")
+    fmt.Println("This will add all words in a text dictionary to a trie implemtation and retrieve them in an auto complete fashion.")
+    fmt.Println("Usage: go 'run exampletrie.go' to use default dictionary path or go 'run exampletrie.go path/to/dictfile' to use custom dictionary\n\n")
+    
     var rootNode = TrieNode{"", make(map[string]TrieNode), true}
 
     // Adds all words in dictionary to trie
 	addWordsToTrie(rootNode, "./words_alpha.txt")
+
+	fmt.Println("All words in dictionary added to trie")
 }
