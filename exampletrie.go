@@ -80,7 +80,7 @@ func addWordsToTrie(rootNode TrieNode, filename string) {
 func main() {
     fmt.Println("\nExample Trie Implementation in GoLang.\n")
     fmt.Println("This will add all words in a text dictionary to a trie implemtation and retrieve them in an auto complete fashion.")
-    fmt.Println("Usage: go 'run exampletrie.go' to use default dictionary path or go 'run exampletrie.go path/to/dictfile' to use custom dictionary\n\n")
+    fmt.Println("Usage: 'go run exampletrie.go' to use default dictionary path or 'go run exampletrie.go path/to/dictfile' to use custom dictionary\n\n")
     
 	args := os.Args
 
